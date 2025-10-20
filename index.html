@@ -5,12 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>LiveSearchbench — Real‑time Search Evaluation</title>
     <meta name="description" content="A minimal, zero-build GitHub Pages site for a LiveSearchbench-style leaderboard and details." />
-
-    <!-- Zero-build Tailwind via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
     <style>
-      .grid-auto-fill { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
       .striped tr:nth-child(even) { background: rgba(0,0,0,0.03); }
     </style>
   </head>
@@ -23,7 +19,6 @@
           <a href="#leaderboard" class="px-3 py-1.5 rounded-full bg-gray-800 text-white">Leaderboard</a>
           <a href="#details" class="px-3 py-1.5 rounded-full border">Details</a>
           <a href="https://github.com/LiveSearchbench/LiveSearchbench.github.io" class="px-3 py-1.5 rounded-full border" target="_blank" rel="noopener">Code</a>
-          <a href="#data" class="px-3 py-1.5 rounded-full border">Data</a>
         </nav>
       </div>
     </header>
@@ -34,21 +29,12 @@
         <div>
           <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">LiveSearchbench</h1>
           <h2 class="text-xl text-gray-600 mt-2">A lightweight, contamination‑aware benchmark for real‑time search systems</h2>
-          <p class="mt-4 text-gray-600">This template mirrors the structure of the reference site while remaining a single static file for GitHub Pages. Replace the data below and publish to <code>LiveSearchbench.github.io</code>.</p>
+          <p class="mt-4 text-gray-600">Single-file template for GitHub Pages. Replace the leaderboard items and publish to <code>LiveSearchbench.github.io</code>.</p>
           <div class="mt-6 flex flex-wrap gap-3">
             <a href="#leaderboard" class="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700">Open Leaderboard</a>
             <a href="#details" class="px-4 py-2 rounded-xl border hover:bg-gray-100">Read Details</a>
           </div>
         </div>
-        <!-- Demo widget
-        <div class="bg-white rounded-2xl border p-5 shadow-sm">
-          <div class="text-sm text-gray-500">Demo widget</div>
-          <div class="mt-3 flex gap-2">
-            <input id="q" class="flex-1 rounded-xl border px-3 py-2" placeholder="Type a query, e.g., best LLM for coding" />
-            <button id="go" class="px-4 py-2 rounded-xl bg-gray-900 text-white">Evaluate</button>
-          </div>
-          <div id="demoResult" class="mt-4 text-sm text-gray-600 hidden"></div>
-        </div> -->
       </div>
     </section>
 
@@ -56,24 +42,14 @@
     <section id="details" class="max-w-6xl mx-auto px-4 py-10">
       <div class="bg-white rounded-2xl p-6 border shadow-sm">
         <h2 class="text-2xl font-bold mb-4 text-center">About</h2>
-        <p class="text-gray-700 mb-3">LiveSearchbench is a simple benchmark-style site to present real‑time search evaluation results. It aims to answer questions like:</p>
-        <ul class="list-disc pl-5 text-gray-700 space-y-1">
-          <li>How effective are systems at retrieving fresh, relevant results?</li>
-          <li>How do latency and quality trade off under live conditions?</li>
-          <li>How do different stacks compare under identical tasks?</li>
-        </ul>
-        <p class="text-gray-700 mt-3">Swap the dataset below with your own measurements, or wire this page to your API.</p>
+        <p class="text-gray-700">This site presents a simple leaderboard of systems evaluated on live search tasks. Values can be filled in later; for now the table lists systems only.</p>
       </div>
     </section>
 
     <!-- Leaderboard -->
-    <section id="leaderboard" class="max-w-6xl mx-auto px-4 pb-4">
+    <section id="leaderboard" class="max-w-6xl mx-auto px-4 pb-10">
       <div class="flex items-end justify-between">
         <h2 class="text-2xl font-bold">Leaderboard</h2>
-        <div class="flex gap-2">
-          <button id="shuffle" class="text-sm px-3 py-1.5 rounded-lg border hover:bg-gray-100">Shuffle</button>
-          <button id="reset" class="text-sm px-3 py-1.5 rounded-lg border hover:bg-gray-100">Reset</button>
-        </div>
       </div>
       <div class="mt-4 overflow-x-auto bg-white border rounded-2xl p-4 shadow-sm">
         <table class="w-full text-left text-sm striped" id="board">
@@ -81,28 +57,14 @@
             <tr>
               <th class="py-2">#</th>
               <th>System</th>
-              <th>Quality</th>
-              <th>Latency (ms)</th>
-              <th>Overall</th>
+              <th>level1</th>
+              <th>level2</th>
+              <th>level3</th>
             </tr>
           </thead>
           <tbody></tbody>
         </table>
-        <p class="text-xs text-gray-500 mt-3">Note: Replace the sample data to reflect your own evaluation.</p>
       </div>
-    </section>
-
-    <!-- Data section (how to customize) -->
-    <section id="data" class="max-w-6xl mx-auto px-4 py-8">
-      <h2 class="text-xl font-semibold mb-2">Data format</h2>
-      <p class="text-sm text-gray-600 mb-3">Edit the <code>DATA</code> constant at the bottom of this file (or fetch from <code>data.json</code>).</p>
-      <pre class="bg-gray-900 text-gray-100 text-xs rounded-xl p-4 overflow-x-auto"><code>{
-  "runs": [
-    { "name": "Engine A", "quality": 0.86, "latency": 420, "score": 86 },
-    { "name": "Engine B", "quality": 0.81, "latency": 390, "score": 83 },
-    { "name": "Engine C", "quality": 0.79, "latency": 310, "score": 80 }
-  ]
-}</code></pre>
     </section>
 
     <footer class="border-t">
@@ -110,50 +72,42 @@
     </footer>
 
     <script>
-      // ===== Sample data (replace) =====
-      const ORIGINAL = {
+      // ===== Systems list with empty values =====
+      const DATA = {
         runs: [
-          { name: 'SWE-Agent', quality: 0.62, latency: 480, score: 79 },
-          { name: 'OpenHands', quality: 0.58, latency: 510, score: 75 },
-          { name: 'Cursor', quality: 0.55, latency: 420, score: 73 },
-          { name: 'Windsurf', quality: 0.54, latency: 460, score: 72 }
+          { name: 'anthropic/claude-sonnet-4.5', level1: '', level2: '', level3: '' },
+          { name: 'gemini-2.5-pro', level1: '', level2: '', level3: '' },
+          { name: 'gemini-2.5-flash', level1: '', level2: '', level3: '' },
+          { name: 'deepseek-v3.1', level1: '', level2: '', level3: '' },
+          { name: 'Pro/deepseek-ai/DeepSeek-R1', level1: '', level2: '', level3: '' },
+          { name: 'meta-llama/llama-3.3-70b-instruct', level1: '', level2: '', level3: '' },
+          { name: 'moonshotai/kimi-k2', level1: '', level2: '', level3: '' },
+          { name: 'gpt-5', level1: '', level2: '', level3: '' },
+          { name: 'o3-2025-04-16', level1: '', level2: '', level3: '' },
+          { name: 'o3-mini', level1: '', level2: '', level3: '' },
+          { name: 'grok-4', level1: '', level2: '', level3: '' },
+          { name: 'z-ai/glm-4.6', level1: '', level2: '', level3: '' },
+          { name: 'qwen-max', level1: '', level2: '', level3: '' },
+          { name: 'Qwen/Qwen3-235B-A22B', level1: '', level2: '', level3: '' },
+          { name: 'Search-R1', level1: '', level2: '', level3: '' },
+          { name: 'SSRL', level1: '', level2: '', level3: '' }
         ]
       };
-      const DATA = JSON.parse(JSON.stringify(ORIGINAL));
 
       const tbody = document.querySelector('#board tbody');
       function renderBoard(list) {
         tbody.innerHTML = '';
-        list
-          .slice()
-          .sort((a,b) => b.score - a.score)
-          .forEach((row, i) => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `<td class="py-2">${i+1}</td>
-                            <td>${row.name}</td>
-                            <td>${(row.quality*100).toFixed(1)}%</td>
-                            <td>${row.latency}</td>
-                            <td class="font-medium">${row.score}</td>`;
-            tbody.appendChild(tr);
-          });
+        list.forEach((row, i) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td class="py-2">${i+1}</td>
+                          <td>${row.name}</td>
+                          <td>${row.level1}</td>
+                          <td>${row.level2}</td>
+                          <td>${row.level3}</td>`;
+          tbody.appendChild(tr);
+        });
       }
       renderBoard(DATA.runs);
-
-      document.getElementById('shuffle').addEventListener('click', () => {
-        const shuffled = [...DATA.runs].sort(() => Math.random() - 0.5);
-        renderBoard(shuffled);
-      });
-      document.getElementById('reset').addEventListener('click', () => {
-        renderBoard(ORIGINAL.runs);
-      });
-
-      document.getElementById('go').addEventListener('click', () => {
-        const q = document.getElementById('q').value.trim();
-        const el = document.getElementById('demoResult');
-        if (!q) { el.classList.remove('hidden'); el.textContent = 'Please enter a query.'; return; }
-        el.classList.remove('hidden');
-        el.textContent = `Query received: "${q}". In a real system, this would call your evaluation or retrieval API and render quality/latency/answers here.`;
-      });
 
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>
