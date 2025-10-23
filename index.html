@@ -1,229 +1,271 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>LiveSearchbench — Real‑time Search Evaluation</title>
-    <meta name="description" content="A minimal, zero-build GitHub Pages site for a LiveSearchbench-style leaderboard and details." />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      .striped tr:nth-child(even) { background: rgba(0,0,0,0.03); }
-      .striped tr:hover { background: rgba(59, 130, 246, 0.05); }
-      .rank-1 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%); }
-      .rank-2 { background: linear-gradient(90deg, rgba(192, 192, 192, 0.1) 0%, transparent 100%); }
-      .rank-3 { background: linear-gradient(90deg, rgba(205, 127, 50, 0.1) 0%, transparent 100%); }
-      th { font-weight: 600; }
-      .sortable {
-        cursor: pointer;
-        user-select: none;
-        position: relative;
-        transition: background-color 0.2s;
-      }
-      .sortable:hover {
-        background: rgba(59, 130, 246, 0.1);
-      }
-      .sort-indicator {
-        margin-left: 4px;
-        opacity: 0.5;
-        font-size: 0.8em;
-      }
-      .sort-active {
-        opacity: 1;
-      }
-    </style>
-  </head>
-  <body class="bg-gray-50 text-gray-900 antialiased">
-    <!-- Header -->
-    <header class="sticky top-0 z-30 backdrop-blur bg-white/70 border-b">
-      <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="#" class="font-semibold tracking-tight text-lg">LiveSearchbench</a>
-        <nav class="hidden md:flex gap-3 text-sm">
-          <a href="#leaderboard" class="px-3 py-1.5 rounded-full bg-gray-800 text-white">Leaderboard</a>
-          <a href="#details" class="px-3 py-1.5 rounded-full border">Details</a>
-          <a href="https://github.com/LiveSearchbench/LiveSearchbench" class="px-3 py-1.5 rounded-full border" target="_blank" rel="noopener">Code</a>
-        </nav>
-      </div>
-    </header>
 
-    <!-- Hero -->
-    <section class="max-w-6xl mx-auto px-4 pt-14 pb-6">
-      <div class="grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">LiveSearchbench</h1>
-          <h2 class="text-xl text-gray-600 mt-2">A lightweight, contamination‑aware benchmark for real‑time search systems</h2>
-          <p class="mt-4 text-gray-600">Single-file template for GitHub Pages. Replace the leaderboard items and publish to <code>LiveSearchbench.github.io</code>.</p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="#leaderboard" class="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700">Open Leaderboard</a>
-            <a href="#details" class="px-4 py-2 rounded-xl border hover:bg-gray-100">Read Details</a>
-          </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LiveSearchbench — Real‑time Search Evaluation</title>
+  <meta name="description"
+    content="A minimal, zero-build GitHub Pages site for a LiveSearchbench-style leaderboard and details." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .striped tr:nth-child(even) {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .striped tr:hover {
+      background: rgba(59, 130, 246, 0.05);
+    }
+
+    .rank-1 {
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
+    }
+
+    .rank-2 {
+      background: linear-gradient(90deg, rgba(192, 192, 192, 0.1) 0%, transparent 100%);
+    }
+
+    .rank-3 {
+      background: linear-gradient(90deg, rgba(205, 127, 50, 0.1) 0%, transparent 100%);
+    }
+
+    th {
+      font-weight: 600;
+    }
+
+    .sortable {
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      transition: background-color 0.2s;
+    }
+
+    .sortable:hover {
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    .sort-indicator {
+      margin-left: 4px;
+      opacity: 0.5;
+      font-size: 0.8em;
+    }
+
+    .sort-active {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900 antialiased">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/70 border-b">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="#" class="font-semibold tracking-tight text-lg">LiveSearchbench</a>
+      <nav class="hidden md:flex gap-3 text-sm">
+        <a href="#leaderboard" class="px-3 py-1.5 rounded-full bg-gray-800 text-white">Leaderboard</a>
+        <a href="#details" class="px-3 py-1.5 rounded-full border">Details</a>
+        <a href="https://github.com/hengzzzhou/LiveSearchbench" class="px-3 py-1.5 rounded-full border"
+          target="_blank" rel="noopener">Code</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-4 pt-14 pb-6">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">LiveSearchbench</h1>
+        <h2 class="text-xl text-gray-600 mt-2">A lightweight, contamination‑aware benchmark for real‑time search systems
+        </h2>
+        <p class="mt-4 text-gray-600">Single-file template for GitHub Pages. Replace the leaderboard items and publish
+          to <code>LiveSearchbench.github.io</code>.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#leaderboard" class="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700">Open
+            Leaderboard</a>
+          <a href="#details" class="px-4 py-2 rounded-xl border hover:bg-gray-100">Read Details</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Details / About -->
-    <section id="details" class="max-w-6xl mx-auto px-4 py-10">
-      <div class="bg-white rounded-2xl p-6 border shadow-sm">
-        <h2 class="text-2xl font-bold mb-4 text-center">About</h2>
-        <p class="text-gray-700 leading-relaxed">Evaluating large language models (LLMs) on question answering often relies on static benchmarks that reward memorization and understate the role of retrieval, failing to capture the dynamic nature of world knowledge.</p>
-        <p class="text-gray-700 leading-relaxed mt-4">We present <strong>LiveSearchBench</strong>, an automated pipeline for constructing retrieval-dependent benchmarks from recent knowledge updates. Our method computes deltas between successive Wikidata snapshots, filters candidate triples for quality, and synthesizes natural-language questions at three levels of reasoning difficulty, each guaranteed to admit a unique, verifiable answer through SPARQL validation.</p>
-        <p class="text-gray-700 leading-relaxed mt-4">The pipeline is fully automated, scalable across time, and minimizes human intervention, enabling continual regeneration of temporally grounded benchmarks. Experiments show a pronounced performance drop when models confront facts that post-date pretraining, with the gap most salient on multi-hop queries. Retrieval-augmented methods and larger, instruction-tuned models provide partial gains but fail to close this recency gap.</p>
-        <p class="text-gray-700 leading-relaxed mt-4">By design, <strong>LiveSearchBench</strong> shifts evaluation from static memorization toward tasks that require up-to-date retrieval and reasoning, offering a foundation for systematic, long-term assessment of LLMs under evolving knowledge.</p>
-      </div>
-    </section>
+  <!-- Details / About -->
+  <section id="details" class="max-w-6xl mx-auto px-4 py-10">
+    <div class="bg-white rounded-2xl p-6 border shadow-sm">
+      <h2 class="text-2xl font-bold mb-4 text-center">About</h2>
+      <p class="text-gray-700 leading-relaxed">Evaluating large language models (LLMs) on question answering often
+        relies on static benchmarks that reward memorization and understate the role of retrieval, failing to capture
+        the dynamic nature of world knowledge.</p>
+      <p class="text-gray-700 leading-relaxed mt-4">We present <strong>LiveSearchBench</strong>, an automated pipeline
+        for constructing retrieval-dependent benchmarks from recent knowledge updates. Our method computes deltas
+        between successive Wikidata snapshots, filters candidate triples for quality, and synthesizes natural-language
+        questions at three levels of reasoning difficulty, each guaranteed to admit a unique, verifiable answer through
+        SPARQL validation.</p>
+      <p class="text-gray-700 leading-relaxed mt-4">The pipeline is fully automated, scalable across time, and minimizes
+        human intervention, enabling continual regeneration of temporally grounded benchmarks. Experiments show a
+        pronounced performance drop when models confront facts that post-date pretraining, with the gap most salient on
+        multi-hop queries. Retrieval-augmented methods and larger, instruction-tuned models provide partial gains but
+        fail to close this recency gap.</p>
+      <p class="text-gray-700 leading-relaxed mt-4">By design, <strong>LiveSearchBench</strong> shifts evaluation from
+        static memorization toward tasks that require up-to-date retrieval and reasoning, offering a foundation for
+        systematic, long-term assessment of LLMs under evolving knowledge.</p>
+    </div>
+  </section>
 
-    <!-- Leaderboard -->
-    <section id="leaderboard" class="max-w-6xl mx-auto px-4 pb-10">
-      <div class="flex items-end justify-between">
-        <h2 class="text-2xl font-bold">Leaderboard</h2>
-      </div>
-      <div class="mt-4 overflow-x-auto bg-white border rounded-2xl p-4 shadow-sm">
-        <table class="w-full text-left text-sm striped" id="board">
-          <thead class="text-gray-500 border-b">
-            <tr>
-              <th class="py-3 text-left w-12">#</th>
-              <th class="text-left w-1/3">Model</th>
-              <th class="text-center sortable w-1/6" data-column="level1">
-                Level 1<span class="sort-indicator">↕</span>
-              </th>
-              <th class="text-center sortable w-1/6" data-column="level2">
-                Level 2<span class="sort-indicator">↕</span>
-              </th>
-              <th class="text-center sortable w-1/6" data-column="level3">
-                Level 3<span class="sort-indicator">↕</span>
-              </th>
-              <th class="text-center sortable w-1/6" data-column="avg">
-                Average<span class="sort-indicator sort-active">↓</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
+  <!-- Leaderboard -->
+  <section id="leaderboard" class="max-w-6xl mx-auto px-4 pb-10">
+    <div class="flex items-end justify-between">
+      <h2 class="text-2xl font-bold">Leaderboard</h2>
+    </div>
+    <div class="mt-4 overflow-x-auto bg-white border rounded-2xl p-4 shadow-sm">
+      <table class="w-full text-left text-sm striped" id="board">
+        <thead class="text-gray-500 border-b">
+          <tr>
+            <th class="py-3 text-left w-12">#</th>
+            <th class="text-left w-1/3">Model</th>
+            <th class="text-center sortable w-1/6" data-column="level1">
+              Level 1<span class="sort-indicator">↕</span>
+            </th>
+            <th class="text-center sortable w-1/6" data-column="level2">
+              Level 2<span class="sort-indicator">↕</span>
+            </th>
+            <th class="text-center sortable w-1/6" data-column="level3">
+              Level 3<span class="sort-indicator">↕</span>
+            </th>
+            <th class="text-center sortable w-1/6" data-column="avg">
+              Average<span class="sort-indicator sort-active">↓</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
 
-    <footer class="border-t">
-      <div class="max-w-6xl mx-auto px-4 py-8 text-xs text-gray-500">© <span id="year"></span> LiveSearchbench · Hosted on GitHub Pages</div>
-    </footer>
+  <footer class="border-t">
+    <div class="max-w-6xl mx-auto px-4 py-8 text-xs text-gray-500">© <span id="year"></span> LiveSearchbench · Hosted on
+      GitHub Pages</div>
+  </footer>
 
-    <script>
-      // ===== Systems list with performance data =====
-      const DATA = {
-        runs: [
-          { name: 'qwen-max', level1: '42.00%', level2: '42.00%', level3: '34.00%', avg: '39.33%' },
-          { name: 'grok-4', level1: '38.00%', level2: '54.00%', level3: '34.00%', avg: '42.00%' },
-          { name: 'anthropic/claude-sonnet-4.5', level1: '38.67%', level2: '39.00%', level3: '42.00%', avg: '39.89%' },
-          { name: 'gemini-2.5-flash', level1: '38.00%', level2: '32.00%', level3: '38.00%', avg: '36.00%' },
-          { name: 'moonshotai/kimi-k2', level1: '36.67%', level2: '40.00%', level3: '36.00%', avg: '37.56%' },
-          { name: 'z-ai/glm-4.6', level1: '36.00%', level2: '35.00%', level3: '28.00%', avg: '33.00%' },
-          { name: 'deepseek-v3.1', level1: '35.33%', level2: '35.00%', level3: '28.00%', avg: '32.78%' },
-          { name: 'Pro/deepseek-ai/DeepSeek-R1', level1: '34.67%', level2: '43.00%', level3: '42.00%', avg: '39.89%' },
-          { name: 'meta-llama/llama-3.3-70b-instruct', level1: '34.67%', level2: '46.00%', level3: '30.00%', avg: '36.89%' },
-          { name: 'gemini-2.5-pro', level1: '33.33%', level2: '51.00%', level3: '42.00%', avg: '42.11%' },
-          { name: 'gpt-5', level1: '27.33%', level2: '57.00%', level3: '42.00%', avg: '42.11%' },
-          { name: 'Qwen/Qwen3-235B-A22B', level1: '19.33%', level2: '19.00%', level3: '20.00%', avg: '19.44%' },
-          { name: 'o3-2025-04-16', level1: '12.00%', level2: '27.00%', level3: '28.00%', avg: '22.33%' },
-          { name: 'o3-mini', level1: '12.00%', level2: '19.00%', level3: '14.00%', avg: '15.00%' },
-          { name: 'llama3b', level1: '-', level2: '-', level3: '-', avg: '-' },
-          { name: 'qwen3b', level1: '-', level2: '-', level3: '-', avg: '-' },
-          { name: 'qwen3b-Search-R1', level1: '-', level2: '-', level3: '-', avg: '-' },
-          { name: 'qwen3b-SSRL', level1: '-', level2: '-', level3: '-', avg: '-' },
-          { name: 'llama3b-Search-R1', level1: '-', level2: '-', level3: '-', avg: '-' },
-          { name: 'llama3b-SSRL', level1: '-', level2: '-', level3: '-', avg: '-' }
-        ]
-      };
+  <script>
+    // ===== Systems list with performance data =====
+    const DATA = {
+      runs: [
+        { name: 'qwen-max', level1: '42.00%', level2: '42.00%', level3: '34.00%', avg: '39.33%' },
+        { name: 'grok-4', level1: '38.00%', level2: '54.00%', level3: '34.00%', avg: '42.00%' },
+        { name: 'anthropic/claude-sonnet-4.5', level1: '38.67%', level2: '39.00%', level3: '42.00%', avg: '39.89%' },
+        { name: 'gemini-2.5-flash', level1: '38.00%', level2: '32.00%', level3: '38.00%', avg: '36.00%' },
+        { name: 'moonshotai/kimi-k2', level1: '36.67%', level2: '40.00%', level3: '36.00%', avg: '37.56%' },
+        { name: 'z-ai/glm-4.6', level1: '36.00%', level2: '35.00%', level3: '28.00%', avg: '33.00%' },
+        { name: 'deepseek-v3.1', level1: '35.33%', level2: '35.00%', level3: '28.00%', avg: '32.78%' },
+        { name: 'Pro/deepseek-ai/DeepSeek-R1', level1: '34.67%', level2: '43.00%', level3: '42.00%', avg: '39.89%' },
+        { name: 'meta-llama/llama-3.3-70b-instruct', level1: '34.67%', level2: '46.00%', level3: '30.00%', avg: '36.89%' },
+        { name: 'gemini-2.5-pro', level1: '33.33%', level2: '51.00%', level3: '42.00%', avg: '42.11%' },
+        { name: 'gpt-5', level1: '27.33%', level2: '57.00%', level3: '42.00%', avg: '42.11%' },
+        { name: 'Qwen/Qwen3-235B-A22B', level1: '19.33%', level2: '19.00%', level3: '20.00%', avg: '19.44%' },
+        { name: 'o3-2025-04-16', level1: '12.00%', level2: '27.00%', level3: '28.00%', avg: '22.33%' },
+        { name: 'o3-mini', level1: '12.00%', level2: '19.00%', level3: '14.00%', avg: '15.00%' },
+        { name: 'llama3b', level1: '-', level2: '-', level3: '-', avg: '-' },
+        { name: 'qwen3b', level1: '-', level2: '-', level3: '-', avg: '-' },
+        { name: 'qwen3b-Search-R1', level1: '-', level2: '-', level3: '-', avg: '-' },
+        { name: 'qwen3b-SSRL', level1: '-', level2: '-', level3: '-', avg: '-' },
+        { name: 'llama3b-Search-R1', level1: '-', level2: '-', level3: '-', avg: '-' },
+        { name: 'llama3b-SSRL', level1: '-', level2: '-', level3: '-', avg: '-' }
+      ]
+    };
 
-      const tbody = document.querySelector('#board tbody');
-      let currentSort = { column: 'avg', direction: 'desc' };
-      
-      function parseValue(value, column) {
-        if (value === '-') return column === 'name' ? 'zzz' : -1;
-        if (column === 'name') return value.toLowerCase();
-        return parseFloat(value);
-      }
-      
-      function sortData(data, column, direction) {
-        return [...data].sort((a, b) => {
-          const aVal = parseValue(a[column], column);
-          const bVal = parseValue(b[column], column);
-          
-          if (aVal === bVal) return 0;
-          
-          if (column === 'name') {
-            return direction === 'asc' ? 
-              (aVal < bVal ? -1 : 1) : 
-              (aVal > bVal ? -1 : 1);
-          } else {
-            // For numeric columns, put -1 (missing data) at the end
-            if (aVal === -1 && bVal === -1) return 0;
-            if (aVal === -1) return 1;
-            if (bVal === -1) return -1;
-            
-            return direction === 'desc' ? bVal - aVal : aVal - bVal;
-          }
-        });
-      }
-      
-      function updateSortIndicators() {
-        document.querySelectorAll('.sort-indicator').forEach(indicator => {
-          indicator.textContent = '↕';
-          indicator.classList.remove('sort-active');
-        });
-        
-        const activeHeader = document.querySelector(`[data-column="${currentSort.column}"] .sort-indicator`);
-        if (activeHeader) {
-          activeHeader.textContent = currentSort.direction === 'desc' ? '↓' : '↑';
-          activeHeader.classList.add('sort-active');
+    const tbody = document.querySelector('#board tbody');
+    let currentSort = { column: 'avg', direction: 'desc' };
+
+    function parseValue(value, column) {
+      if (value === '-') return column === 'name' ? 'zzz' : -1;
+      if (column === 'name') return value.toLowerCase();
+      return parseFloat(value);
+    }
+
+    function sortData(data, column, direction) {
+      return [...data].sort((a, b) => {
+        const aVal = parseValue(a[column], column);
+        const bVal = parseValue(b[column], column);
+
+        if (aVal === bVal) return 0;
+
+        if (column === 'name') {
+          return direction === 'asc' ?
+            (aVal < bVal ? -1 : 1) :
+            (aVal > bVal ? -1 : 1);
+        } else {
+          // For numeric columns, put -1 (missing data) at the end
+          if (aVal === -1 && bVal === -1) return 0;
+          if (aVal === -1) return 1;
+          if (bVal === -1) return -1;
+
+          return direction === 'desc' ? bVal - aVal : aVal - bVal;
         }
+      });
+    }
+
+    function updateSortIndicators() {
+      document.querySelectorAll('.sort-indicator').forEach(indicator => {
+        indicator.textContent = '↕';
+        indicator.classList.remove('sort-active');
+      });
+
+      const activeHeader = document.querySelector(`[data-column="${currentSort.column}"] .sort-indicator`);
+      if (activeHeader) {
+        activeHeader.textContent = currentSort.direction === 'desc' ? '↓' : '↑';
+        activeHeader.classList.add('sort-active');
       }
-      
-      function renderBoard(list) {
-        tbody.innerHTML = '';
-        
-        list.forEach((row, i) => {
-          const tr = document.createElement('tr');
-          let rankClass = '';
-          
-          // Only highlight top 3 if sorted by average
-          if (currentSort.column === 'avg' && row.avg !== '-') {
-            if (i === 0) rankClass = 'rank-1';
-            else if (i === 1) rankClass = 'rank-2';
-            else if (i === 2) rankClass = 'rank-3';
-          }
-          
-          tr.className = rankClass;
-          tr.innerHTML = `<td class="py-3">${i+1}</td>
+    }
+
+    function renderBoard(list) {
+      tbody.innerHTML = '';
+
+      list.forEach((row, i) => {
+        const tr = document.createElement('tr');
+        let rankClass = '';
+
+        // Only highlight top 3 if sorted by average
+        if (currentSort.column === 'avg' && row.avg !== '-') {
+          if (i === 0) rankClass = 'rank-1';
+          else if (i === 1) rankClass = 'rank-2';
+          else if (i === 2) rankClass = 'rank-3';
+        }
+
+        tr.className = rankClass;
+        tr.innerHTML = `<td class="py-3">${i + 1}</td>
                           <td class="font-medium">${row.name}</td>
                           <td class="text-center">${row.level1}</td>
                           <td class="text-center">${row.level2}</td>
                           <td class="text-center">${row.level3}</td>
                           <td class="text-center font-semibold">${row.avg}</td>`;
-          tbody.appendChild(tr);
-        });
-      }
-      
-      // Add click handlers for sorting
-      document.querySelectorAll('.sortable').forEach(header => {
-        header.addEventListener('click', () => {
-          const column = header.dataset.column;
-          
-          if (currentSort.column === column) {
-            currentSort.direction = currentSort.direction === 'desc' ? 'asc' : 'desc';
-          } else {
-            currentSort.column = column;
-            currentSort.direction = 'desc';
-          }
-          
-          const sortedData = sortData(DATA.runs, currentSort.column, currentSort.direction);
-          updateSortIndicators();
-          renderBoard(sortedData);
-        });
+        tbody.appendChild(tr);
       });
-      
-      // Initial render
-      const initialData = sortData(DATA.runs, currentSort.column, currentSort.direction);
-      renderBoard(initialData);
+    }
 
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-  </body>
+    // Add click handlers for sorting
+    document.querySelectorAll('.sortable').forEach(header => {
+      header.addEventListener('click', () => {
+        const column = header.dataset.column;
+
+        if (currentSort.column === column) {
+          currentSort.direction = currentSort.direction === 'desc' ? 'asc' : 'desc';
+        } else {
+          currentSort.column = column;
+          currentSort.direction = 'desc';
+        }
+
+        const sortedData = sortData(DATA.runs, currentSort.column, currentSort.direction);
+        updateSortIndicators();
+        renderBoard(sortedData);
+      });
+    });
+
+    // Initial render
+    const initialData = sortData(DATA.runs, currentSort.column, currentSort.direction);
+    renderBoard(initialData);
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+
 </html>
