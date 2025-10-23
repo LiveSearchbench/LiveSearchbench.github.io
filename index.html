@@ -8,6 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       .striped tr:nth-child(even) { background: rgba(0,0,0,0.03); }
+      .striped tr:hover { background: rgba(59, 130, 246, 0.05); }
+      .rank-1 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%); }
+      .rank-2 { background: linear-gradient(90deg, rgba(192, 192, 192, 0.1) 0%, transparent 100%); }
+      .rank-3 { background: linear-gradient(90deg, rgba(205, 127, 50, 0.1) 0%, transparent 100%); }
+      th { font-weight: 600; }
     </style>
   </head>
   <body class="bg-gray-50 text-gray-900 antialiased">
@@ -18,7 +23,7 @@
         <nav class="hidden md:flex gap-3 text-sm">
           <a href="#leaderboard" class="px-3 py-1.5 rounded-full bg-gray-800 text-white">Leaderboard</a>
           <a href="#details" class="px-3 py-1.5 rounded-full border">Details</a>
-          <a href="https://github.com/LiveSearchbench/LiveSearchbench.github.io" class="px-3 py-1.5 rounded-full border" target="_blank" rel="noopener">Code</a>
+          <a href="https://github.com/LiveSearchbench/LiveSearchbench" class="px-3 py-1.5 rounded-full border" target="_blank" rel="noopener">Code</a>
         </nav>
       </div>
     </header>
@@ -42,7 +47,10 @@
     <section id="details" class="max-w-6xl mx-auto px-4 py-10">
       <div class="bg-white rounded-2xl p-6 border shadow-sm">
         <h2 class="text-2xl font-bold mb-4 text-center">About</h2>
-        <p class="text-gray-700">This site presents a simple leaderboard of systems evaluated on live search tasks. Values can be filled in later; for now the table lists systems only.</p>
+        <p class="text-gray-700 leading-relaxed">Evaluating large language models (LLMs) on question answering often relies on static benchmarks that reward memorization and understate the role of retrieval, failing to capture the dynamic nature of world knowledge.</p>
+        <p class="text-gray-700 leading-relaxed mt-4">We present <strong>LiveSearchBench</strong>, an automated pipeline for constructing retrieval-dependent benchmarks from recent knowledge updates. Our method computes deltas between successive Wikidata snapshots, filters candidate triples for quality, and synthesizes natural-language questions at three levels of reasoning difficulty, each guaranteed to admit a unique, verifiable answer through SPARQL validation.</p>
+        <p class="text-gray-700 leading-relaxed mt-4">The pipeline is fully automated, scalable across time, and minimizes human intervention, enabling continual regeneration of temporally grounded benchmarks. Experiments show a pronounced performance drop when models confront facts that post-date pretraining, with the gap most salient on multi-hop queries. Retrieval-augmented methods and larger, instruction-tuned models provide partial gains but fail to close this recency gap.</p>
+        <p class="text-gray-700 leading-relaxed mt-4">By design, <strong>LiveSearchBench</strong> shifts evaluation from static memorization toward tasks that require up-to-date retrieval and reasoning, offering a foundation for systematic, long-term assessment of LLMs under evolving knowledge.</p>
       </div>
     </section>
 
@@ -53,13 +61,14 @@
       </div>
       <div class="mt-4 overflow-x-auto bg-white border rounded-2xl p-4 shadow-sm">
         <table class="w-full text-left text-sm striped" id="board">
-          <thead class="text-gray-500">
+          <thead class="text-gray-500 border-b">
             <tr>
-              <th class="py-2">#</th>
-              <th>System</th>
-              <th>level1</th>
-              <th>level2</th>
-              <th>level3</th>
+              <th class="py-3 text-left">#</th>
+              <th class="text-left">Model</th>
+              <th class="text-center">Level 1</th>
+              <th class="text-center">Level 2</th>
+              <th class="text-center">Level 3</th>
+              <th class="text-center">Average</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -72,38 +81,57 @@
     </footer>
 
     <script>
-      // ===== Systems list with empty values =====
+      // ===== Systems list with performance data =====
       const DATA = {
         runs: [
-          { name: 'anthropic/claude-sonnet-4.5', level1: '', level2: '', level3: '' },
-          { name: 'gemini-2.5-pro', level1: '', level2: '', level3: '' },
-          { name: 'gemini-2.5-flash', level1: '', level2: '', level3: '' },
-          { name: 'deepseek-v3.1', level1: '', level2: '', level3: '' },
-          { name: 'Pro/deepseek-ai/DeepSeek-R1', level1: '', level2: '', level3: '' },
-          { name: 'meta-llama/llama-3.3-70b-instruct', level1: '', level2: '', level3: '' },
-          { name: 'moonshotai/kimi-k2', level1: '', level2: '', level3: '' },
-          { name: 'gpt-5', level1: '', level2: '', level3: '' },
-          { name: 'o3-2025-04-16', level1: '', level2: '', level3: '' },
-          { name: 'o3-mini', level1: '', level2: '', level3: '' },
-          { name: 'grok-4', level1: '', level2: '', level3: '' },
-          { name: 'z-ai/glm-4.6', level1: '', level2: '', level3: '' },
-          { name: 'qwen-max', level1: '', level2: '', level3: '' },
-          { name: 'Qwen/Qwen3-235B-A22B', level1: '', level2: '', level3: '' },
-          { name: 'Search-R1', level1: '', level2: '', level3: '' },
-          { name: 'SSRL', level1: '', level2: '', level3: '' }
+          { name: 'qwen-max', level1: '42.00%', level2: '42.00%', level3: '34.00%', avg: '39.33%' },
+          { name: 'grok-4', level1: '38.00%', level2: '54.00%', level3: '34.00%', avg: '42.00%' },
+          { name: 'anthropic/claude-sonnet-4.5', level1: '38.67%', level2: '39.00%', level3: '42.00%', avg: '39.89%' },
+          { name: 'gemini-2.5-flash', level1: '38.00%', level2: '32.00%', level3: '38.00%', avg: '36.00%' },
+          { name: 'moonshotai/kimi-k2', level1: '36.67%', level2: '40.00%', level3: '36.00%', avg: '37.56%' },
+          { name: 'z-ai/glm-4.6', level1: '36.00%', level2: '35.00%', level3: '28.00%', avg: '33.00%' },
+          { name: 'deepseek-v3.1', level1: '35.33%', level2: '35.00%', level3: '28.00%', avg: '32.78%' },
+          { name: 'Pro/deepseek-ai/DeepSeek-R1', level1: '34.67%', level2: '43.00%', level3: '42.00%', avg: '39.89%' },
+          { name: 'meta-llama/llama-3.3-70b-instruct', level1: '34.67%', level2: '46.00%', level3: '30.00%', avg: '36.89%' },
+          { name: 'gemini-2.5-pro', level1: '33.33%', level2: '51.00%', level3: '42.00%', avg: '42.11%' },
+          { name: 'gpt-5', level1: '27.33%', level2: '57.00%', level3: '42.00%', avg: '42.11%' },
+          { name: 'Qwen/Qwen3-235B-A22B', level1: '19.33%', level2: '19.00%', level3: '20.00%', avg: '19.44%' },
+          { name: 'o3-2025-04-16', level1: '12.00%', level2: '27.00%', level3: '28.00%', avg: '22.33%' },
+          { name: 'o3-mini', level1: '12.00%', level2: '19.00%', level3: '14.00%', avg: '15.00%' },
+          { name: 'llama3b', level1: '-', level2: '-', level3: '-', avg: '-' },
+          { name: 'qwen3b', level1: '-', level2: '-', level3: '-', avg: '-' },
+          { name: 'qwen3b-Search-R1', level1: '-', level2: '-', level3: '-', avg: '-' },
+          { name: 'qwen3b-SSRL', level1: '-', level2: '-', level3: '-', avg: '-' },
+          { name: 'llama3b-Search-R1', level1: '-', level2: '-', level3: '-', avg: '-' },
+          { name: 'llama3b-SSRL', level1: '-', level2: '-', level3: '-', avg: '-' }
         ]
       };
 
       const tbody = document.querySelector('#board tbody');
       function renderBoard(list) {
         tbody.innerHTML = '';
-        list.forEach((row, i) => {
+        // Sort by average performance (excluding models with no data)
+        const sortedList = [...list].sort((a, b) => {
+          if (a.avg === '-' && b.avg === '-') return 0;
+          if (a.avg === '-') return 1;
+          if (b.avg === '-') return -1;
+          return parseFloat(b.avg) - parseFloat(a.avg);
+        });
+        
+        sortedList.forEach((row, i) => {
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td class="py-2">${i+1}</td>
-                          <td>${row.name}</td>
-                          <td>${row.level1}</td>
-                          <td>${row.level2}</td>
-                          <td>${row.level3}</td>`;
+          let rankClass = '';
+          if (row.avg !== '-' && i === 0) rankClass = 'rank-1';
+          else if (row.avg !== '-' && i === 1) rankClass = 'rank-2';
+          else if (row.avg !== '-' && i === 2) rankClass = 'rank-3';
+          
+          tr.className = rankClass;
+          tr.innerHTML = `<td class="py-3">${i+1}</td>
+                          <td class="font-medium">${row.name}</td>
+                          <td class="text-center">${row.level1}</td>
+                          <td class="text-center">${row.level2}</td>
+                          <td class="text-center">${row.level3}</td>
+                          <td class="text-center font-semibold">${row.avg}</td>`;
           tbody.appendChild(tr);
         });
       }
