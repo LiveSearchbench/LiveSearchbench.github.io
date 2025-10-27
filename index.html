@@ -116,28 +116,61 @@
     <div class="flex items-end justify-between">
       <h2 class="text-2xl font-bold">Leaderboard</h2>
     </div>
-    <div class="mt-4 overflow-x-auto bg-white border rounded-2xl p-4 shadow-sm">
-      <table class="w-full text-left text-sm striped" id="board">
-        <thead class="text-gray-500 border-b">
-          <tr>
-            <th class="py-3 text-left w-12">#</th>
-            <th class="text-left w-1/3">Model</th>
-            <th class="text-center sortable w-1/6" data-column="level1">
-              Level 1<span class="sort-indicator">↕</span>
-            </th>
-            <th class="text-center sortable w-1/6" data-column="level2">
-              Level 2<span class="sort-indicator">↕</span>
-            </th>
-            <th class="text-center sortable w-1/6" data-column="level3">
-              Level 3<span class="sort-indicator">↕</span>
-            </th>
-            <th class="text-center sortable w-1/6" data-column="avg">
-              Average<span class="sort-indicator sort-active">↓</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    
+    <!-- Large Models Table -->
+    <div class="mt-6">
+      <h3 class="text-lg font-semibold mb-3 text-gray-800">Large Language Models</h3>
+      <div class="overflow-x-auto bg-white border rounded-2xl p-4 shadow-sm">
+        <table class="w-full text-left text-sm striped" id="large-board">
+          <thead class="text-gray-500 border-b">
+            <tr>
+              <th class="py-3 text-left w-12">#</th>
+              <th class="text-left w-1/3">Model</th>
+              <th class="text-center sortable w-1/6" data-column="level1" data-table="large">
+                Level 1<span class="sort-indicator">↕</span>
+              </th>
+              <th class="text-center sortable w-1/6" data-column="level2" data-table="large">
+                Level 2<span class="sort-indicator">↕</span>
+              </th>
+              <th class="text-center sortable w-1/6" data-column="level3" data-table="large">
+                Level 3<span class="sort-indicator">↕</span>
+              </th>
+              <th class="text-center sortable w-1/6" data-column="avg" data-table="large">
+                Average<span class="sort-indicator sort-active">↓</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Small Models with RL Table -->
+    <div class="mt-6">
+      <h3 class="text-lg font-semibold mb-3 text-gray-800">Small Models with Reinforcement Learning</h3>
+      <div class="overflow-x-auto bg-white border rounded-2xl p-4 shadow-sm">
+        <table class="w-full text-left text-sm striped" id="small-board">
+          <thead class="text-gray-500 border-b">
+            <tr>
+              <th class="py-3 text-left w-12">#</th>
+              <th class="text-left w-1/3">Model</th>
+              <th class="text-center sortable w-1/6" data-column="level1" data-table="small">
+                Level 1<span class="sort-indicator">↕</span>
+              </th>
+              <th class="text-center sortable w-1/6" data-column="level2" data-table="small">
+                Level 2<span class="sort-indicator">↕</span>
+              </th>
+              <th class="text-center sortable w-1/6" data-column="level3" data-table="small">
+                Level 3<span class="sort-indicator">↕</span>
+              </th>
+              <th class="text-center sortable w-1/6" data-column="avg" data-table="small">
+                Average<span class="sort-indicator sort-active">↓</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -147,34 +180,42 @@
   </footer>
 
   <script>
-    // ===== Systems list with performance data =====
-    const DATA = {
+    // ===== Large Models Data =====
+    const LARGE_MODELS_DATA = {
       runs: [
-        { name: 'qwen-max', level1: '42.00%', level2: '42.00%', level3: '34.00%', avg: '39.33%' },
-        { name: 'grok-4', level1: '38.00%', level2: '54.00%', level3: '34.00%', avg: '42.00%' },
         { name: 'anthropic/claude-sonnet-4.5', level1: '38.67%', level2: '39.00%', level3: '42.00%', avg: '39.89%' },
+        { name: 'gemini-2.5-pro', level1: '33.33%', level2: '51.00%', level3: '42.00%', avg: '42.11%' },
         { name: 'gemini-2.5-flash', level1: '38.00%', level2: '32.00%', level3: '38.00%', avg: '36.00%' },
-        { name: 'moonshotai/kimi-k2', level1: '36.67%', level2: '40.00%', level3: '36.00%', avg: '37.56%' },
-        { name: 'z-ai/glm-4.6', level1: '36.00%', level2: '35.00%', level3: '28.00%', avg: '33.00%' },
         { name: 'deepseek-v3.1', level1: '35.33%', level2: '35.00%', level3: '28.00%', avg: '32.78%' },
         { name: 'Pro/deepseek-ai/DeepSeek-R1', level1: '34.67%', level2: '43.00%', level3: '42.00%', avg: '39.89%' },
         { name: 'meta-llama/llama-3.3-70b-instruct', level1: '34.67%', level2: '46.00%', level3: '30.00%', avg: '36.89%' },
-        { name: 'gemini-2.5-pro', level1: '33.33%', level2: '51.00%', level3: '42.00%', avg: '42.11%' },
+        { name: 'moonshotai/kimi-k2', level1: '36.67%', level2: '40.00%', level3: '36.00%', avg: '37.56%' },
         { name: 'gpt-5', level1: '27.33%', level2: '57.00%', level3: '42.00%', avg: '42.11%' },
-        { name: 'Qwen/Qwen3-235B-A22B', level1: '19.33%', level2: '19.00%', level3: '20.00%', avg: '19.44%' },
         { name: 'o3-2025-04-16', level1: '12.00%', level2: '27.00%', level3: '28.00%', avg: '22.33%' },
         { name: 'o3-mini', level1: '12.00%', level2: '19.00%', level3: '14.00%', avg: '15.00%' },
-        { name: 'llama3b', level1: '-', level2: '-', level3: '-', avg: '-' },
-        { name: 'qwen3b', level1: '-', level2: '-', level3: '-', avg: '-' },
-        { name: 'qwen3b-Search-R1', level1: '-', level2: '-', level3: '-', avg: '-' },
-        { name: 'qwen3b-SSRL', level1: '-', level2: '-', level3: '-', avg: '-' },
-        { name: 'llama3b-Search-R1', level1: '-', level2: '-', level3: '-', avg: '-' },
-        { name: 'llama3b-SSRL', level1: '-', level2: '-', level3: '-', avg: '-' }
+        { name: 'grok-4', level1: '38.00%', level2: '54.00%', level3: '34.00%', avg: '42.00%' },
+        { name: 'z-ai/glm-4.6', level1: '36.00%', level2: '35.00%', level3: '28.00%', avg: '33.00%' },
+        { name: 'qwen-max', level1: '42.00%', level2: '42.00%', level3: '34.00%', avg: '39.33%' },
+        { name: 'Qwen/Qwen3-235B-A22B', level1: '19.33%', level2: '19.00%', level3: '20.00%', avg: '19.44%' }
       ]
     };
 
-    const tbody = document.querySelector('#board tbody');
-    let currentSort = { column: 'avg', direction: 'desc' };
+    // ===== Small Models with RL Data =====
+    const SMALL_MODELS_DATA = {
+      runs: [
+        { name: 'llama3b-instruct', level1: '18.70%', level2: '13.00%', level3: '8.00%', avg: '13.23%' },
+        { name: 'qwen3b', level1: '23.30%', level2: '17.00%', level3: '8.00%', avg: '16.10%' },
+        { name: 'qwen3b-Search-R1', level1: '24.00%', level2: '27.00%', level3: '12.00%', avg: '21.00%' },
+        { name: 'qwen3b-SSRL', level1: '20.00%', level2: '18.00%', level3: '4.00%', avg: '14.00%' },
+        { name: 'llama3b-Search-R1', level1: '25.30%', level2: '21.00%', level3: '10.00%', avg: '18.77%' },
+        { name: 'llama3b-SSRL', level1: '23.30%', level2: '22.00%', level3: '12.00%', avg: '19.10%' }
+      ]
+    };
+
+    const largeTbody = document.querySelector('#large-board tbody');
+    const smallTbody = document.querySelector('#small-board tbody');
+    let largeSortState = { column: 'avg', direction: 'desc' };
+    let smallSortState = { column: 'avg', direction: 'desc' };
 
     function parseValue(value, column) {
       if (value === '-') return column === 'name' ? 'zzz' : -1;
@@ -204,20 +245,21 @@
       });
     }
 
-    function updateSortIndicators() {
-      document.querySelectorAll('.sort-indicator').forEach(indicator => {
+    function updateSortIndicators(tableType, sortState) {
+      const tableSelector = tableType === 'large' ? '#large-board' : '#small-board';
+      document.querySelectorAll(`${tableSelector} .sort-indicator`).forEach(indicator => {
         indicator.textContent = '↕';
         indicator.classList.remove('sort-active');
       });
 
-      const activeHeader = document.querySelector(`[data-column="${currentSort.column}"] .sort-indicator`);
+      const activeHeader = document.querySelector(`${tableSelector} [data-column="${sortState.column}"] .sort-indicator`);
       if (activeHeader) {
-        activeHeader.textContent = currentSort.direction === 'desc' ? '↓' : '↑';
+        activeHeader.textContent = sortState.direction === 'desc' ? '↓' : '↑';
         activeHeader.classList.add('sort-active');
       }
     }
 
-    function renderBoard(list) {
+    function renderBoard(list, tbody, sortState) {
       tbody.innerHTML = '';
 
       list.forEach((row, i) => {
@@ -225,7 +267,7 @@
         let rankClass = '';
 
         // Only highlight top 3 if sorted by average
-        if (currentSort.column === 'avg' && row.avg !== '-') {
+        if (sortState.column === 'avg' && row.avg !== '-') {
           if (i === 0) rankClass = 'rank-1';
           else if (i === 1) rankClass = 'rank-2';
           else if (i === 2) rankClass = 'rank-3';
@@ -246,6 +288,18 @@
     document.querySelectorAll('.sortable').forEach(header => {
       header.addEventListener('click', () => {
         const column = header.dataset.column;
+        const tableType = header.dataset.table;
+        
+        let currentSort, data, tbody;
+        if (tableType === 'large') {
+          currentSort = largeSortState;
+          data = LARGE_MODELS_DATA.runs;
+          tbody = largeTbody;
+        } else {
+          currentSort = smallSortState;
+          data = SMALL_MODELS_DATA.runs;
+          tbody = smallTbody;
+        }
 
         if (currentSort.column === column) {
           currentSort.direction = currentSort.direction === 'desc' ? 'asc' : 'desc';
@@ -254,15 +308,20 @@
           currentSort.direction = 'desc';
         }
 
-        const sortedData = sortData(DATA.runs, currentSort.column, currentSort.direction);
-        updateSortIndicators();
-        renderBoard(sortedData);
+        const sortedData = sortData(data, currentSort.column, currentSort.direction);
+        updateSortIndicators(tableType, currentSort);
+        renderBoard(sortedData, tbody, currentSort);
       });
     });
 
-    // Initial render
-    const initialData = sortData(DATA.runs, currentSort.column, currentSort.direction);
-    renderBoard(initialData);
+    // Initial render for both tables
+    const initialLargeData = sortData(LARGE_MODELS_DATA.runs, largeSortState.column, largeSortState.direction);
+    const initialSmallData = sortData(SMALL_MODELS_DATA.runs, smallSortState.column, smallSortState.direction);
+    
+    updateSortIndicators('large', largeSortState);
+    updateSortIndicators('small', smallSortState);
+    renderBoard(initialLargeData, largeTbody, largeSortState);
+    renderBoard(initialSmallData, smallTbody, smallSortState);
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
