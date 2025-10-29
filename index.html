@@ -9,6 +9,10 @@
     content="A minimal, zero-build GitHub Pages site for a LiveSearchbench-style leaderboard and details." />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    * {
+      font-family: "Times New Roman", Times, serif;
+    }
+
     .striped tr:nth-child(even) {
       background: rgba(0, 0, 0, 0.03);
     }
@@ -52,6 +56,10 @@
 
     .sort-active {
       opacity: 1;
+    }
+
+    .rank-cell {
+      text-align: center;
     }
   </style>
 </head>
@@ -169,7 +177,7 @@
         <table class="w-full text-left text-sm striped" id="large-board">
           <thead class="text-gray-500 border-b">
             <tr>
-              <th class="py-3 text-left w-20 pr-6">Rank</th>
+              <th class="py-3 text-center w-20 pr-6">Rank</th>
               <th class="text-left w-1/3 pl-4">Model</th>
               <th class="text-center sortable w-1/6" data-column="level1" data-table="large">
                 Level 1<span class="sort-indicator">↕</span>
@@ -197,7 +205,7 @@
         <table class="w-full text-left text-sm striped" id="small-board">
           <thead class="text-gray-500 border-b">
             <tr>
-              <th class="py-3 text-left w-20 pr-6">Rank</th>
+              <th class="py-3 text-center w-20 pr-6">Rank</th>
               <th class="text-left w-1/3 pl-4">Model</th>
               <th class="text-center sortable w-1/6" data-column="level1" data-table="small">
                 Level 1<span class="sort-indicator">↕</span>
@@ -331,7 +339,7 @@
           rankDisplay = (i + 1).toString();
         }
         
-        tr.innerHTML = `<td class="py-3 font-medium pr-6">${rankDisplay}</td>
+        tr.innerHTML = `<td class="py-3 font-medium pr-6 rank-cell">${rankDisplay}</td>
                           <td class="font-medium pl-4">${row.name}</td>
                           <td class="text-center">${row.level1}</td>
                           <td class="text-center">${row.level2}</td>
