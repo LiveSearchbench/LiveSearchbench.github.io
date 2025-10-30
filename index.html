@@ -4,9 +4,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LiveSearchbench — Real‑time Search Evaluation</title>
+  <title>LiveSearchBench — Real‑time Search Evaluation</title>
   <meta name="description"
-    content="A minimal, zero-build GitHub Pages site for a LiveSearchbench-style leaderboard and details." />
+    content="A continually updated benchmark for retrieval and reasoning over dynamic knowledge." />
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     * {
@@ -68,13 +71,10 @@
   <!-- Header -->
   <header class="sticky top-0 z-30 backdrop-blur bg-white/70 border-b">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="#" class="font-semibold tracking-tight text-lg">LiveSearchbench</a>
-      <nav class="hidden md:flex gap-3 text-sm">
-        <a href="#leaderboard" class="px-3 py-1.5 rounded-full bg-gray-800 text-white">Leaderboard</a>
-        <a href="#details" class="px-3 py-1.5 rounded-full border">Details</a>
-        <a href="https://github.com/hengzzzhou/LiveSearchbench" class="px-3 py-1.5 rounded-full border"
-          target="_blank" rel="noopener">Code</a>
-      </nav>
+      <a href="#" class="font-semibold tracking-tight text-lg flex items-center gap-2">
+        <img src="logo.svg" alt="LiveSearchBench" class="h-8 w-8">
+        LiveSearchBench
+      </a>
     </div>
   </header>
 
@@ -82,7 +82,9 @@
   <section class="max-w-6xl mx-auto px-4 pt-14 pb-6">
     <div class="w-full">
       <div class="text-center mb-8">
-        <h1 class="text-3xl md:text-4xl font-extrabold leading-tight mb-3">LiveSearchBench: An Automatically Constructed Benchmark for Retrieval and Reasoning over Dynamic Knowledge</h1>
+        <div class="flex flex-col items-center mb-6">
+          <h1 class="text-3xl md:text-4xl font-extrabold leading-tight text-center">LiveSearchBench: An Automatically Constructed Benchmark for Retrieval and Reasoning over Dynamic Knowledge</h1>
+        </div>
         
         <!-- Authors -->
         <div class="text-base text-gray-600 mb-4 leading-relaxed max-w-5xl mx-auto">
@@ -113,20 +115,108 @@
           </div>
         </div>
         
-        <h2 class="text-lg text-gray-600 mt-2 mb-6">A lightweight, contamination‑aware benchmark for real‑time search systems</h2>
+        <h2 class="text-lg text-gray-600 mt-2 mb-6">A continually updated benchmark that shifts evaluation from static memorization toward tasks requiring up-to-date retrieval and reasoning</h2>
         
         <div class="mt-6 flex flex-wrap gap-3 justify-center">
-          <a href="" class="px-4 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700">📄 arXiv</a>
-          <a href="" class="px-4 py-2 rounded-xl bg-gray-800 text-white hover:bg-gray-900">💻 Code</a>
-          <a href="" class="px-4 py-2 rounded-xl bg-green-600 text-white hover:bg-green-700">📊 Dataset</a>
-          <a href="#details" class="px-4 py-2 rounded-xl border hover:bg-gray-100">Read Details</a>
+          <a href="" class="px-4 py-2 rounded-xl border hover:bg-gray-100">📄 arXiv</a>
+          <a href="" class="px-4 py-2 rounded-xl border hover:bg-gray-100">💻 Code</a>
+          <a href="" class="px-4 py-2 rounded-xl border hover:bg-gray-100">📊 Dataset</a>
+          <a href="#cite" class="px-4 py-2 rounded-xl border hover:bg-gray-100">📄 Cite</a>
           <a href="mailto:hengzzzhou@gmail.com" class="px-4 py-2 rounded-xl border hover:bg-gray-100">📧 Contact</a>
         </div>
       </div>
       
       <!-- Method Overview Image -->
       <div class="w-full bg-gray-50 border rounded-xl p-8 text-center">
+        <div class="flex items-center justify-center mb-4">
+          <img src="logo.svg" alt="LiveSearchBench" class="h-12 w-auto mr-3">
+          <h3 class="text-xl font-semibold text-gray-800">Pipeline Overview</h3>
+        </div>
         <img src="pipeline.png" alt="LiveSearchBench Pipeline" class="w-full max-w-4xl mx-auto rounded-lg shadow-lg" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Benchmark Statistics -->
+  <section class="max-w-6xl mx-auto px-4 py-6">
+    <div class="bg-white rounded-2xl p-6 border shadow-sm">
+      <h2 class="text-2xl font-bold mb-6 text-center">Benchmark Statistics</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+          <div class="text-3xl font-bold text-blue-600">600</div>
+          <div class="text-sm text-blue-700 font-medium">Total Questions</div>
+          <div class="text-xs text-blue-600 mt-1">Across 2021 & 2025 batches</div>
+        </div>
+        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+          <div class="text-3xl font-bold text-green-600">3</div>
+          <div class="text-sm text-green-700 font-medium">Difficulty Levels</div>
+          <div class="text-xs text-green-600 mt-1">L1: Single-hop, L2: Multi-constraint, L3: Multi-hop+Fuzz</div>
+        </div>
+        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+          <div class="text-3xl font-bold text-purple-600">100%</div>
+          <div class="text-sm text-purple-700 font-medium">SPARQL Validated</div>
+          <div class="text-xs text-purple-600 mt-1">Every question has unique answer</div>
+        </div>
+        <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+          <div class="text-3xl font-bold text-orange-600">52.9%</div>
+          <div class="text-sm text-orange-700 font-medium">Performance Drop</div>
+          <div class="text-xs text-orange-600 mt-1">2021 → 2025 average degradation</div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-6">
+      <p class="text-yellow-800"><strong>Note:</strong> The 2025 batch represents genuinely novel knowledge that post-dates model training, while the 2021 batch may overlap with pretraining data. The dramatic performance differences highlight the challenge of dynamic knowledge evaluation.</p>
+    </div>
+  </section>
+
+  <!-- Key Results -->
+  <section class="max-w-6xl mx-auto px-4 py-6">
+    <div class="bg-white rounded-2xl p-6 border shadow-sm">
+      <h2 class="text-2xl font-bold mb-6 text-center">Key Experimental Results</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-gray-800">📈 Retrieval vs. No Retrieval</h3>
+          <div class="bg-gray-50 rounded-lg p-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-sm text-gray-600">2021 Batch Improvement</span>
+              <span class="font-semibold text-blue-600">+137.8%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-blue-500 h-2 rounded-full" style="width: 58%"></div>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-sm text-gray-600">2025 Batch Improvement</span>
+              <span class="font-semibold text-green-600">+308.3%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600">Retrieval shows dramatically higher relative improvements on novel 2025 knowledge</p>
+        </div>
+        
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-gray-800">🎯 Difficulty Level Analysis</h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+              <span class="text-sm font-medium">Level 1 (Single-hop)</span>
+              <span class="text-green-700 font-semibold">Highest accuracy</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+              <span class="text-sm font-medium">Level 2 (Multi-constraint)</span>
+              <span class="text-yellow-700 font-semibold">Moderate difficulty</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+              <span class="text-sm font-medium">Level 3 (Multi-hop+Fuzz)</span>
+              <span class="text-red-700 font-semibold">Most challenging</span>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600">Performance typically declines from L1 to L3, reflecting greater sensitivity to retrieval precision</p>
+        </div>
       </div>
     </div>
   </section>
@@ -134,44 +224,118 @@
   <!-- Details / About -->
   <section id="details" class="max-w-6xl mx-auto px-4 py-10">
     <div class="bg-white rounded-2xl p-6 border shadow-sm">
-      <h2 class="text-2xl font-bold mb-6 text-center">About</h2>
+      <div class="flex items-center justify-center mb-6">
+        <img src="logo.svg" alt="LiveSearchBench" class="h-10 w-auto mr-3">
+        <h2 class="text-2xl font-bold">About</h2>
+      </div>
       
+      <!-- Key Findings -->
+      <div class="mb-8 bg-blue-50 rounded-xl p-6 border-l-4 border-blue-400">
+        <h3 class="font-semibold text-blue-900 mb-3">🔑 Key Findings</h3>
+        <ul class="space-y-2 text-blue-800">
+          <li>• <strong>Pronounced performance drop</strong> when models confront facts that post-date pretraining</li>
+          <li>• <strong>Gap most salient on multi-hop queries</strong> requiring complex reasoning</li>
+          <li>• <strong>Retrieval-augmented methods provide partial gains</strong> but fail to close the recency gap</li>
+          <li>• <strong>Parametric-only inference often matches retrieval</strong> on static datasets due to memorization</li>
+        </ul>
+      </div>
+
       <!-- Method Overview Diagram -->
       <div class="mb-8 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-6 border">
         <h3 class="text-lg font-semibold mb-4 text-center text-gray-800">LiveSearchBench Pipeline</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
           <!-- Step 1: Knowledge Delta Extraction -->
           <div class="bg-white rounded-lg p-4 shadow-sm">
             <div class="text-3xl mb-2">📊</div>
-            <h4 class="font-semibold text-purple-700 mb-2">Differential Knowledge Extraction</h4>
-            <p class="text-sm text-gray-600">Compute deltas between successive Wikidata snapshots to identify new & updated facts</p>
+            <h4 class="font-semibold text-purple-700 mb-2">1. Differential Knowledge Extraction</h4>
+            <p class="text-sm text-gray-600">Compute deltas between successive Wikidata snapshots (T₀ → T₁) to identify new & updated facts</p>
           </div>
           
-          <!-- Step 2: Multi-level Question Generation -->
+          <!-- Step 2: Filtering -->
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <div class="text-3xl mb-2">🔍</div>
+            <h4 class="font-semibold text-orange-700 mb-2">2. Candidate Filtering</h4>
+            <p class="text-sm text-gray-600">Apply relation allow-lists, entity quality checks, and statement validity filters</p>
+          </div>
+          
+          <!-- Step 3: Multi-level Question Generation -->
           <div class="bg-white rounded-lg p-4 shadow-sm">
             <div class="text-3xl mb-2">🎯</div>
-            <h4 class="font-semibold text-blue-700 mb-2">Multi-level Question Generation</h4>
-            <p class="text-sm text-gray-600">Synthesize questions at three difficulty levels: Single-hop, Multi-constraint, Multi-hop+Fuzz</p>
+            <h4 class="font-semibold text-blue-700 mb-2">3. Hierarchical Question Synthesis</h4>
+            <p class="text-sm text-gray-600">Generate L1 (single-hop), L2 (multi-constraint), L3 (multi-hop+fuzz) questions</p>
           </div>
           
-          <!-- Step 3: SPARQL Validation -->
+          <!-- Step 4: SPARQL Validation -->
           <div class="bg-white rounded-lg p-4 shadow-sm">
             <div class="text-3xl mb-2">✅</div>
-            <h4 class="font-semibold text-green-700 mb-2">SPARQL Validation</h4>
-            <p class="text-sm text-gray-600">Ensure each question admits a unique, verifiable answer through automated validation</p>
+            <h4 class="font-semibold text-green-700 mb-2">4. Finalization & Validation</h4>
+            <p class="text-sm text-gray-600">SPARQL validation ensures each question admits exactly one verifiable answer</p>
           </div>
         </div>
       </div>
       
-      <p class="text-gray-700 leading-relaxed">Evaluating large language models (LLMs) on question answering often relies on static benchmarks that reward memorization and understate the role of retrieval, failing to capture the dynamic nature of world knowledge. We present <strong>LiveSearchBench</strong>, an automated pipeline for constructing retrieval-dependent benchmarks from recent knowledge updates. Our method computes deltas between successive Wikidata snapshots, filters candidate triples for quality, and synthesizes natural-language questions at three levels of reasoning difficulty, each guaranteed to admit a unique, verifiable answer through SPARQL validation. The pipeline is fully automated, scalable across time, and minimizes human intervention, enabling continual regeneration of temporally grounded benchmarks. Experiments show a pronounced performance drop when models confront facts that post-date pretraining, with the gap most salient on multi-hop queries. Retrieval-augmented methods and larger, instruction-tuned models provide partial gains but fail to close this recency gap. By design, <strong>LiveSearchBench</strong> shifts evaluation from static memorization toward tasks that require up-to-date retrieval and reasoning, offering a foundation for systematic, long-term assessment of LLMs under evolving knowledge.</p>
+      <!-- Detailed Examples -->
+      <div class="mb-8">
+        <h3 class="text-lg font-semibold mb-4 text-gray-800">Question Complexity Examples</h3>
+        <div class="space-y-4">
+          <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
+            <h4 class="font-semibold text-green-800 mb-2">Level 1: Single-Hop</h4>
+            <p class="text-green-700 mb-2"><strong>Q:</strong> "In which country will the ICLR2026 conference be held?"</p>
+            <p class="text-green-700"><strong>A:</strong> Brazil</p>
+            <p class="text-xs text-green-600 mt-1">Based on triple: (ICLR2026, country, Brazil)</p>
+          </div>
+          
+          <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+            <h4 class="font-semibold text-blue-800 mb-2">Level 2: Multi-Constraint</h4>
+            <p class="text-blue-700 mb-2"><strong>Q:</strong> "Which football player has played for Real Madrid, Juventus, and Al Nassr?"</p>
+            <p class="text-blue-700"><strong>A:</strong> Cristiano Ronaldo</p>
+            <p class="text-xs text-blue-600 mt-1">Requires intersection of multiple constraints, based on (Real Madrid, player, Cristiano Ronaldo), (Juventus , player, Cristiano Ronaldo), (Al Nassr , player, Cristiano Ronaldo)</p>
+          </div>
+          
+          <div class="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
+            <h4 class="font-semibold text-purple-800 mb-2">Level 3: Multi-Hop + Attribute Fuzzing</h4>
+            <p class="text-purple-700 mb-2"><strong>Q:</strong> "Which football player has played for Real Madrid, Juventus, and a Saudi Arabian club?"</p>
+            <p class="text-purple-700"><strong>A:</strong> Cristiano Ronaldo</p>
+            <p class="text-xs text-purple-600 mt-1">Fuzzes "Al Nassr" → "Saudi Arabian club" + additional reasoning hop</p>
+          </div>
+        </div>
+      </div>
+      <!-- Core Research Contribution -->
+      <div class="mb-8">
+        <h3 class="text-lg font-semibold mb-4 text-gray-800">Research Contributions</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border">
+            <div class="text-2xl mb-2">🔄</div>
+            <h4 class="font-semibold text-blue-800 mb-2">Scalable Data Generation</h4>
+            <p class="text-sm text-blue-700">Automated pipeline that continuously harvests questions from real-world editing streams with temporal correctness validation</p>
+          </div>
+          <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border">
+            <div class="text-2xl mb-2">📊</div>
+            <h4 class="font-semibold text-green-800 mb-2">Comprehensive Evaluation</h4>
+            <p class="text-sm text-green-700">Extensive evaluation of state-of-the-art LLMs and RAG methods revealing strengths and limitations in dynamic knowledge handling</p>
+          </div>
+          <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border">
+            <div class="text-2xl mb-2">🌐</div>
+            <h4 class="font-semibold text-purple-800 mb-2">Community Resource</h4>
+            <p class="text-sm text-purple-700">Continually updating benchmark enabling the community to track progress on retrieval-augmented methods under realistic conditions</p>
+          </div>
+        </div>
+      </div>
+      
+      <p class="text-gray-700 leading-relaxed">Our experiments demonstrate that current LLMs face significant challenges when confronting knowledge that post-dates their training. The performance gap is most pronounced on multi-hop reasoning tasks, where models must integrate multiple pieces of recent information. This finding highlights the critical need for benchmarks that reflect the dynamic nature of real-world knowledge and adequately test models' ability to retrieve and reason over up-to-date information.</p>
     </div>
   </section>
 
   <!-- Leaderboard -->
   <section id="leaderboard" class="max-w-6xl mx-auto px-4 pb-10">
-    <div class="flex items-end justify-between">
+    <div class="flex items-end justify-between mb-4">
       <h2 class="text-2xl font-bold">Leaderboard</h2>
+      <div class="text-sm text-gray-600">
+        <span class="bg-red-100 text-red-800 px-2 py-1 rounded">2025 Batch: Novel Knowledge</span>
+      </div>
     </div>
+    
+
     
     <!-- Large Models Table -->
     <div class="mt-6">
@@ -226,6 +390,34 @@
           </thead>
           <tbody></tbody>
         </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Citation Section -->
+  <section id="cite" class="max-w-6xl mx-auto px-4 py-10 bg-gray-50">
+    <div class="bg-white rounded-2xl p-6 border shadow-sm">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center">
+          <img src="logo.svg" alt="LiveSearchBench" class="h-8 w-auto mr-3">
+          <h2 class="text-2xl font-bold">BibTeX</h2>
+        </div>
+        <button onclick="copyBibTeX()" class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" title="Copy BibTeX to clipboard">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 448 512">
+            <path d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z"/>
+          </svg>
+          <span>Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code" class="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm font-mono border"><code>@article{zhou2025livesearchbench,
+  title={LiveSearchBench: An Automatically Constructed Benchmark for Retrieval and Reasoning over Dynamic Knowledge},
+  author={Zhou, Heng and Yu, Ao and Fan, Yuchen and Shi, Jianing and Kang, Li and Geng, Hejia and Zhang, Yongting and Fan, Yutao and Wu, Yuhao and He, Tiancheng and Qin, Yiran and Bai, Lei and Yin, Zhenfei},
+  journal={arXiv preprint arXiv:2025.xxxxx},
+  year={2025}
+}</code></pre>
+      <div class="mt-4 text-sm text-gray-600">
+        <p class="mb-2"><strong>Note:</strong> Please update the arXiv number once the paper is published.</p>
+        <p>If you use LiveSearchBench in your research, please cite our paper. We appreciate your support in advancing dynamic knowledge evaluation for LLMs.</p>
       </div>
     </div>
   </section>
@@ -392,6 +584,71 @@
     renderBoard(initialSmallData, smallTbody, smallSortState);
 
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // BibTeX copy functionality
+    function copyBibTeX() {
+      const bibtexText = document.getElementById('bibtex-code').textContent;
+      
+      if (navigator.clipboard && window.isSecureContext) {
+        // Use the modern clipboard API
+        navigator.clipboard.writeText(bibtexText).then(() => {
+          showCopySuccess();
+        }).catch(err => {
+          console.error('Failed to copy: ', err);
+          fallbackCopyTextToClipboard(bibtexText);
+        });
+      } else {
+        // Fallback for older browsers
+        fallbackCopyTextToClipboard(bibtexText);
+      }
+    }
+
+    function fallbackCopyTextToClipboard(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      
+      // Avoid scrolling to bottom
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+      
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          showCopySuccess();
+        } else {
+          console.error('Fallback: Copying text command was unsuccessful');
+        }
+      } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+      }
+      
+      document.body.removeChild(textArea);
+    }
+
+    function showCopySuccess() {
+      const button = document.querySelector('button[onclick="copyBibTeX()"]');
+      const originalText = button.innerHTML;
+      
+      button.innerHTML = `
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+        </svg>
+        <span>Copied!</span>
+      `;
+      button.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+      button.classList.add('bg-green-600');
+      
+      setTimeout(() => {
+        button.innerHTML = originalText;
+        button.classList.remove('bg-green-600');
+        button.classList.add('bg-blue-600', 'hover:bg-blue-700');
+      }, 2000);
+    }
   </script>
 </body>
 
